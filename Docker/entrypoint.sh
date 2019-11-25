@@ -36,6 +36,9 @@ postconf 'smtputf8_enable = no' || exit 1
 # This makes sure the message id is set. If this is set to no dkim=fail will happen.
 postconf 'always_add_missing_headers = yes' || exit 1
 
+# Google Mail requires STARTTLS let's enable it
+postconf smtp_use_tls=yes
+
 # Have supervisord run and control postfix (/etc/supervisor.d/postfix.ini)
 echo -e "\nLoading postfix service"
 /usr/bin/supervisord -n
